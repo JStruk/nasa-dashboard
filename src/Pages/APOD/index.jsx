@@ -13,10 +13,10 @@ const APOD = () => {
     }, [])
 
     return (
-        <>
+        <div className="flex">
             {apods.map(apod => {
                 return (<div className="p-10"  key={apod.title}>
-                    <div className=" rounded overflow-hidden shadow-lg">
+                    <div className="max-w-sm rounded shadow-lg">
                         <img className="w-full" src={apod?.hdurl} alt={apod?.title}/>
                         <div className="px-6 py-4">
                             <div className="font-bold text-xl mb-2">{apod?.title} </div>
@@ -32,7 +32,7 @@ const APOD = () => {
                 </div>)
             })
             }
-        </>
+        </div>
     )
 }
 
