@@ -6,16 +6,16 @@ const APOD = () => {
 
     useEffect(() => {
         (async function fetchApod() {
-            const {data: fetchedApods} = await axios.get('https://api.nasa.gov/planetary/apod?api_key=BkQerCYLcMl5BzaHg6vsasTgunnXJnO4tPTgehic&count=5');
+            const {data: fetchedApods} = await axios.get('https://api.nasa.gov/planetary/apod?api_key=BkQerCYLcMl5BzaHg6vsasTgunnXJnO4tPTgehic&count=4');
             setApods(fetchedApods)
             console.log(fetchedApods);
         })()
     }, [])
 
     return (
-        <div className="flex">
+        <div className="">
             {apods.map(apod => {
-                return (<div className="p-10"  key={apod.title}>
+                return (<div className="m-10"  key={apod.title}>
                     <div className="max-w-sm rounded shadow-lg">
                         <img className="w-full" src={apod?.hdurl} alt={apod?.title}/>
                         <div className="px-6 py-4">
