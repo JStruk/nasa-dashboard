@@ -1,8 +1,7 @@
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
-    Link
+    Route
 } from "react-router-dom";
 
 import './App.css';
@@ -13,13 +12,13 @@ function App() {
     return (
         <Router>
             <div className="flex w-full">
-                <div className="w-1/4">
+                <div className="h-auto">
                     <Sidebar/>
                 </div>
                 <Switch>
                     <Route path="/poop">this is poop</Route>
                     <Route path="/apod">
-                        <div className="w-3/4">
+                        <div className="">
                             <APOD/>
                         </div>
                     </Route>
