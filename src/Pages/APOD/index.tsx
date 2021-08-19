@@ -1,7 +1,18 @@
 import axios from 'axios';
 import {useEffect, useState} from 'react';
 
-const APOD = () => {
+interface APOD {
+    title: string
+    url: string
+    hdurl: string
+    explanation: string
+    // eslint-disable-next-line camelcase
+    media_type: string
+    copyright: string
+    date: string
+}
+
+const APOD = (): JSX.Element => {
     const [apods, setApods] = useState([]);
 
     useEffect(() => {
@@ -14,7 +25,7 @@ const APOD = () => {
 
     return (
         <div className="">
-            {apods.map(apod => {
+            {apods.map((apod: APOD) => {
                 return (<div className="m-10"  key={apod.title}>
                     <div className="max-w-sm rounded shadow-lg">
                         <img className="w-full" src={apod?.hdurl} alt={apod?.title}/>
