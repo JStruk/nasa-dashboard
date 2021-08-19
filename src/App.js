@@ -7,7 +7,8 @@ import {
 import './App.css';
 import Sidebar from './components/Sidebar'
 import Media from "react-media";
-import APODPage from './Pages/APODPage/index'
+import APODPage from './Pages/APODPage'
+import NeoPage from './Pages/NeoPage'
 
 function App() {
     return (
@@ -29,10 +30,14 @@ function App() {
                     </Media>
                 </div>
                 <Switch>
-                    <Route path="/poop">this is poop</Route>
                     <Route path="/apod">
                         <div className="">
                             <APODPage/>
+                        </div>
+                    </Route>
+                    <Route path="/neo">
+                        <div className="">
+                            <NeoPage/>
                         </div>
                     </Route>
                 </Switch>

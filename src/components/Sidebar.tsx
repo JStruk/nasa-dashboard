@@ -1,5 +1,6 @@
 import {Link} from "react-router-dom";
 import {AiOutlinePicture, AiOutlineMenu, AiFillCloseSquare} from 'react-icons/ai';
+import {GiAsteroid} from 'react-icons/gi'
 import {ProSidebar, Menu, MenuItem} from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
 import {useState} from "react";
@@ -33,6 +34,9 @@ const Sidebar = ({collapsible = false, toggle = false}: SidebarProps): JSX.Eleme
                 <Link to="/" className="m-5 text-center font-bold text-white overflow-hidden"> NASA Dashboard </Link>
                 <Menu iconShape="square">
                     <MenuItem icon={<AiOutlinePicture/>}>Astronomy Pic OTD <Link to="/apod"/> </MenuItem>
+                </Menu>
+                <Menu iconShape="square">
+                    <MenuItem icon={<GiAsteroid/>}>Near Earth Objects <Link to="/neo"/> </MenuItem>
                 </Menu>
             </ProSidebar>
         </>
