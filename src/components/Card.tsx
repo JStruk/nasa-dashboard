@@ -1,4 +1,5 @@
 import APOD from "../Pages/APODPage/types";
+import CardTag from './CardTag'
 
 interface CardProps {
     apod: APOD
@@ -18,6 +19,10 @@ const Card = ({apod}: CardProps): JSX.Element => {
                         : apod?.title}
                     </h1>
                     <p className="text-base text-gray-400 mt-2"> {apod?.explanation} </p>
+                    <div className="flex flex-wrap lg:flex-nowrap justify-center mt-4">
+                        <CardTag text={apod.copyright} />
+                        <CardTag text={apod.date} />
+                    </div>
                 </div>
             </article>
         </>
