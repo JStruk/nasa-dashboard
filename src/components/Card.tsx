@@ -14,7 +14,7 @@ const Card = ({apod}: CardProps): JSX.Element => {
                 }
                 <div className="p-10 my-auto">
                     <h1 className="text-2xl font-semibold text-gray-800"> {apod.media_type === 'video'
-                        ? <a target="_blank" href={apod.url} rel="noreferrer"> {apod.title} (Video link) </a>
+                        ? <a target="_blank" href={apod.url} rel="noreferrer"> (Video link) {apod.title} </a>
                         : apod?.title}
                     </h1>
                     <p className="text-base text-gray-400 mt-2"> {apod?.explanation} </p>
