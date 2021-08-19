@@ -1,24 +1,38 @@
-import { Link } from "react-router-dom";
-import { AiOutlinePicture } from 'react-icons/ai';
-import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
+import {Link} from "react-router-dom";
+import {AiOutlinePicture, AiOutlineMenu, AiFillCloseSquare} from 'react-icons/ai';
+import {ProSidebar, Menu, MenuItem} from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
-import { useState } from "react";
+import {useState} from "react";
 
 interface SidebarProps {
     collapsible?: boolean
     toggle?: boolean
 }
 
-const Sidebar = ({ collapsible = false, toggle = false }: SidebarProps): JSX.Element => {
+const Sidebar = ({collapsible = false, toggle = false}: SidebarProps): JSX.Element => {
     const [collapsed, setCollapsed] = useState(collapsible)
 
     return (
         <>
-            <ProSidebar title="NASA" collapsed={ collapsed }>
-                { toggle && <button className="mt-2" onClick={ () => { setCollapsed(!collapsed) } }>{collapsed ? 'O' : 'X'}</button>}
+            <ProSidebar title="NASA" collapsed={collapsed}>
+                <div className="flex w-full justify-center">
+                    {toggle &&
+                    <button
+                        className="mt-2"
+                        onClick={() => {
+                            setCollapsed(!collapsed)
+                        }}>
+                        {
+                            collapsed
+                                ? <AiOutlineMenu className="h-7 w-7"/>
+                                : <AiFillCloseSquare className="h-7 w-7"/>
+                        }
+                    </button>
+                    }
+                </div>
                 <Link to="/" className="m-5 text-center font-bold text-white overflow-hidden"> NASA Dashboard </Link>
                 <Menu iconShape="square">
-                    <MenuItem icon={ <AiOutlinePicture/> }>Astronomy Pic OTD <Link to="/apod"/> </MenuItem>
+                    <MenuItem icon={<AiOutlinePicture/>}>Astronomy Pic OTD <Link to="/apod"/> </MenuItem>
                 </Menu>
             </ProSidebar>
         </>
