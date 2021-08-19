@@ -5,9 +5,9 @@ import {
 } from "react-router-dom";
 
 import './App.css';
-import APOD from './Pages/APOD';
 import Sidebar from './components/Sidebar'
 import Media from "react-media";
+import APODPage from './Pages/APODPage/index'
 
 function App() {
     return (
@@ -32,7 +32,7 @@ function App() {
                     <Route path="/poop">this is poop</Route>
                     <Route path="/apod">
                         <div className="">
-                            <APOD/>
+                            <APODPage/>
                         </div>
                     </Route>
                 </Switch>
