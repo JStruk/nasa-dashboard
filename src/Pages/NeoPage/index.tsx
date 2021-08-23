@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 import axios from 'axios';
 import {useEffect, useState} from 'react';
-import Card from '../../components/Card'
 
 const NeoPage = (): JSX.Element => {
     const [neos, setNeos] = useState([]);
