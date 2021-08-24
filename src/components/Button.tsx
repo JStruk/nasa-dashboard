@@ -1,14 +1,16 @@
 
 interface ButtonProps {
     text?: string
-    onClick?: () => void
-    id?: string
+    onClick: (id: string) => void
+    id: string
+    color?: string
 }
 
-const Button = ({ text='Button', onClick, id }: ButtonProps): JSX.Element => {
+const Button = ({ text='Button', onClick, id, color="blue" }: ButtonProps): JSX.Element => {
+    const styles = `bg-${color}-500 hover:bg-${color}-700 text-white font-bold py-2 px-4 rounded-full m-4`
 
     return (
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-4" onClick={onClick} id={id} >
+        <button className={styles} onClick={() => onClick(id)} id={id} >
             {text}
         </button>
     )
