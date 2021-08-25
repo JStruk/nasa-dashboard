@@ -31,12 +31,29 @@ const RoverPage = (): JSX.Element => {
     }
 
     return (
-        <div className="h-screen w-full flex flex-col justify-center items-center">
-            <div className="mb-40">
-                <Button text={CAMERAS.MAST.label} onClick={buttonClicked} id={CAMERAS.MAST.buttonId}/>
-                <Button text={CAMERAS.NAVCAM.label} onClick={buttonClicked} id={CAMERAS.NAVCAM.buttonId}/>
+        <>
+            <div className="grid grid-flow-col w-full grid-rows-3 gap-4 h-screen items-center p-4">
+                <div>
+                </div>
+                <div className="m-auto">
+                    <Button text={CAMERAS.FHAZ.label} onClick={buttonClicked} id={CAMERAS.FHAZ.buttonId}/>
+                </div>
+                <div>3</div>
+                <div className="m-auto">
+                    <Button text={CAMERAS.MAST.label} onClick={buttonClicked} id={CAMERAS.MAST.buttonId}/>
+                    <Button text={CAMERAS.NAVCAM.label} onClick={buttonClicked} id={CAMERAS.NAVCAM.buttonId}/></div>
+                <div className="m-auto"><img src={rover} alt="Cartoon Mars Rover" className="rover" id="rover"/></div>
+                <div>6</div>
+                <div>7</div>
+                <div className="m-auto">
+                    <Button text={CAMERAS.RHAZ.label} onClick={buttonClicked} id={CAMERAS.RHAZ.buttonId}/>
+                </div>
+                <div>9</div>
             </div>
-            <img src={rover} alt="Cartoon Mars Rover" className="rover lg:h-1/4 lg:w-1/4" id="rover"/>
+            <Xarrow start={CAMERAS.MAST.buttonId} end="rover"/>
+            <Xarrow start={CAMERAS.NAVCAM.buttonId} end="rover"/>
+            <Xarrow start={CAMERAS.FHAZ.buttonId} end="rover"/>
+            <Xarrow start={CAMERAS.RHAZ.buttonId} end="rover"/>
 
             <ModalWithButton isOpen={modalIsOpen} setModalIsOpen={setModalIsOpen}>
                 <section className="py-8">
@@ -53,9 +70,7 @@ const RoverPage = (): JSX.Element => {
                     </div>
                 </section>
             </ModalWithButton>
-            <Xarrow start={CAMERAS.MAST.buttonId} end="rover"/>
-            <Xarrow start={CAMERAS.NAVCAM.buttonId} end="rover"/>
-        </div>
+        </>
     )
 }
 
