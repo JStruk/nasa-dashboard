@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 import {AiOutlinePicture, AiOutlineMenu, AiFillCloseSquare} from 'react-icons/ai';
-import {GiAsteroid, GiTrackedRobot} from 'react-icons/gi'
+import {GiAsteroid, GiTrackedRobot, GiInterceptorShip} from 'react-icons/gi'
 import {ProSidebar, Menu, MenuItem} from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
 import {useState} from "react";
@@ -40,6 +40,9 @@ const Sidebar = ({collapsible = false, toggle = false}: SidebarProps): JSX.Eleme
                 </Menu>
                 <Menu iconShape="square">
                     <MenuItem icon={<GiTrackedRobot/>}>Mars Rover <Link to="/rover"/> </MenuItem>
+                </Menu>
+                <Menu iconShape="square">
+                    <MenuItem icon={<GiInterceptorShip/>}>ISS Tracker <Link to="/isstracker"/> </MenuItem>
                 </Menu>
             </ProSidebar>
         </>

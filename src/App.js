@@ -10,6 +10,7 @@ import Media from "react-media";
 import APODPage from './Pages/APODPage'
 import NeoPage from './Pages/NeoPage'
 import RoverPage from './Pages/RoverPage'
+import ISSTrackerPage from './Pages/ISSTrackerPage'
 
 function App() {
     return (
@@ -43,6 +44,9 @@ function App() {
                     </Route>
                     <Route path="/rover">
                         <RoverPage />
+                    </Route>
+                    <Route path="/isstracker">
+                        <ISSTrackerPage />
                     </Route>
                 </Switch>
             </div>
