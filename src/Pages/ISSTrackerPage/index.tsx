@@ -1,4 +1,4 @@
-import ReactGlobe, {Marker} from 'react-globe'
+import ReactGlobe, {Marker, Coordinates} from 'react-globe'
 import axios from 'axios';
 import {useCallback, useEffect, useState} from 'react';
 
@@ -7,10 +7,12 @@ const ISSTrackerPage = (): JSX.Element => {
         {
             id: 'international-space-satan',
             color: 'red',
-            coordinates: [0,0],
+            coordinates: [0, 0],
             value: 50,
         }
     );
+
+    const [initialCoords, setinitialCoords] = useState<Coordinates | undefined>()
 
     const updateIssPosition = useCallback(async () => {
         const result = await axios.get('http://api.open-notify.org/iss-now.json')
@@ -20,17 +22,28 @@ const ISSTrackerPage = (): JSX.Element => {
             coordinates: [result.data.iss_position.latitude, result.data.iss_position.longitude],
             value: 50,
         })
-    }, []);
+
+        if (!initialCoords) {
+            setinitialCoords([result.data.iss_position.latitude, result.data.iss_position.longitude])
+        }
+    }, [initialCoords])
 
     useEffect(() => {
-        setInterval(() => updateIssPosition(), 5000);
+        (async () => updateIssPosition())()
     }, [])
+
+    useEffect(() => {
+        if (initialCoords) {
+            setInterval(() => updateIssPosition(), 5000);
+        }
+    }, [initialCoords])
 
     return (
         <div className="w-full h-screen">
-            <ReactGlobe
+            {initialCoords && <ReactGlobe
                 markers={[issPosition]}
-            />
+                initialCoordinates={initialCoords}
+            />}
         </div>
     )
 }
