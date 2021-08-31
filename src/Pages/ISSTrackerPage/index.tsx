@@ -14,22 +14,20 @@ const ISSTrackerPage = (): JSX.Element => {
     );
 
     const [initialCoords, setinitialCoords] = useState<Coordinates | undefined>()
-    const [coordinates, setCoordinates] = useState<Marker[]>([initialMarker])
+    const [markers, setMarkers] = useState<Marker[]>([initialMarker])
 
     const updateIssPosition = async () => {
         const result = await axios.get('http://api.open-notify.org/iss-now.json')
-        const newMarkers: Marker[] = [...coordinates];
-        newMarkers.push({
+
+        const newMarker: Marker = {
             id: 'international-space-satan' + Math.random(),
             color: 'red',
             coordinates: [result.data.iss_position.latitude, result.data.iss_position.longitude],
             value: 50,
-        })
+        }
 
-        setCoordinates(newMarkers)
-        // eslint-disable-next-line no-console
-        console.log({newMarkers});
-
+        setMarkers((markers) => [...markers, newMarker])
+        
         if (!initialCoords) {
             setinitialCoords([result.data.iss_position.latitude, result.data.iss_position.longitude])
         }
@@ -53,7 +51,7 @@ const ISSTrackerPage = (): JSX.Element => {
     return (
         <div className="w-full h-screen">
             {initialCoords && <ReactGlobe
-                markers={coordinates}
+                markers={markers}
                 initialCoordinates={initialCoords}
             />}
         </div>
