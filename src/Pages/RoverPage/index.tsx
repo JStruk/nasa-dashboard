@@ -1,10 +1,10 @@
 /* eslint-disable camelcase */
-import {useState} from 'react'
+import { useState } from 'react'
 import Button from '../../components/Button'
 import ModalWithButton from '../../components/ModalWithButton'
 import axios from 'axios'
 import rover from 'assets/rover.png'
-import {CAMERAS} from './CAMERAS'
+import { CAMERAS } from './CAMERAS'
 import Xarrow from "react-xarrows"
 import RoverImage from "./types";
 import RoverImageCard from "../../components/RoverImageCard";
@@ -15,7 +15,7 @@ const RoverPage = (): JSX.Element => {
 
     const mastButtonClicked = async () => {
         setModalIsOpen(true)
-        const {data} = await axios.get('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=MAST&api_key=BkQerCYLcMl5BzaHg6vsasTgunnXJnO4tPTgehic&page=1')
+        const { data } = await axios.get('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=MAST&api_key=BkQerCYLcMl5BzaHg6vsasTgunnXJnO4tPTgehic&page=1')
         setImages(data.photos)
         console.log(data);
     }
@@ -25,7 +25,7 @@ const RoverPage = (): JSX.Element => {
         setImages([])
         const cameraShorthand = Object.keys(CAMERAS).find((key: string) => CAMERAS[key as keyof typeof CAMERAS].buttonId === id)
 
-        const {data} = await axios.get(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=${cameraShorthand}&api_key=BkQerCYLcMl5BzaHg6vsasTgunnXJnO4tPTgehic&page=1`)
+        const { data } = await axios.get(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=${cameraShorthand}&api_key=BkQerCYLcMl5BzaHg6vsasTgunnXJnO4tPTgehic&page=1`)
         setImages(data.photos)
         setModalIsOpen(true)
     }

@@ -6,7 +6,7 @@ interface RoverImageCardProps {
     roverImage: RoverImage
 }
 
-const RoverImageCard = ({src, roverImage}: RoverImageCardProps): JSX.Element => {
+const RoverImageCard = ({ src, roverImage }: RoverImageCardProps): JSX.Element => {
     const roverTag = `Rover: ${roverImage.rover.name}`
     const cameraTag = `Camera: ${roverImage.camera?.name}`
     const dateTag = roverImage.earth_date

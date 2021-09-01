@@ -5,7 +5,7 @@ interface CardProps {
     apod: APOD
 }
 
-const Card = ({apod}: CardProps): JSX.Element => {
+const Card = ({ apod }: CardProps): JSX.Element => {
     return (
         <>
             <article className="flex flex-wrap lg:flex-nowrap shadow-lg mx-auto">

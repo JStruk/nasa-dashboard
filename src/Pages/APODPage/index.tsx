@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import axios from 'axios';
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import Card from '../../components/Card'
 import APOD from './types'
 
@@ -9,7 +9,7 @@ const APODPage = (): JSX.Element => {
 
     useEffect(() => {
         (async function fetchApod() {
-            const {data: fetchedApods} = await axios.get('https://api.nasa.gov/planetary/apod?api_key=BkQerCYLcMl5BzaHg6vsasTgunnXJnO4tPTgehic&thumbs=true&count=5');
+            const { data: fetchedApods } = await axios.get('https://api.nasa.gov/planetary/apod?api_key=BkQerCYLcMl5BzaHg6vsasTgunnXJnO4tPTgehic&thumbs=true&count=5');
             setApods(fetchedApods)
         })()
     }, [])

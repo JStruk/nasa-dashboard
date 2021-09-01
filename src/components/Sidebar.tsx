@@ -1,16 +1,16 @@
-import {Link} from "react-router-dom";
-import {AiOutlinePicture, AiOutlineMenu, AiFillCloseSquare} from 'react-icons/ai';
-import {GiAsteroid, GiTrackedRobot, GiInterceptorShip} from 'react-icons/gi'
-import {ProSidebar, Menu, MenuItem} from 'react-pro-sidebar';
+import { Link } from "react-router-dom";
+import { AiOutlinePicture, AiOutlineMenu, AiFillCloseSquare } from 'react-icons/ai';
+import { GiAsteroid, GiTrackedRobot, GiInterceptorShip } from 'react-icons/gi'
+import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
-import {useState} from "react";
+import { useState } from "react";
 
 interface SidebarProps {
     collapsible?: boolean
     toggle?: boolean
 }
 
-const Sidebar = ({collapsible = false, toggle = false}: SidebarProps): JSX.Element => {
+const Sidebar = ({ collapsible = false, toggle = false }: SidebarProps): JSX.Element => {
     const [collapsed, setCollapsed] = useState(collapsible)
 
     return (

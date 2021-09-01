@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import axios from 'axios';
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 
 const NeoPage = (): JSX.Element => {
     const [neos, setNeos] = useState([]);
@@ -9,7 +9,7 @@ const NeoPage = (): JSX.Element => {
         (async function fetchNeoW() {
             const startDate = new Date().toISOString().split('T')[0]
             const endDate = startDate
-            const {data: fetchedNeos} = await axios.get(`https://api.nasa.gov/neo/rest/v1/feed?start_date=${startDate}&end_date=${endDate}&api_key=BkQerCYLcMl5BzaHg6vsasTgunnXJnO4tPTgehic&thumbs=true&count=5`);
+            const { data: fetchedNeos } = await axios.get(`https://api.nasa.gov/neo/rest/v1/feed?start_date=${startDate}&end_date=${endDate}&api_key=BkQerCYLcMl5BzaHg6vsasTgunnXJnO4tPTgehic&thumbs=true&count=5`);
             setNeos(fetchedNeos.near_earth_objects[startDate])
         })()
     }, [])
