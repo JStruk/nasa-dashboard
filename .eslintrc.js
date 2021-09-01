@@ -10,6 +10,8 @@ const rules = {
   'no-use-before-define': 'off',
   'react/react-in-jsx-scope': 'off',
   '@typescript-eslint/no-use-before-define': 'error',
+  'object-curly-spacing': 'error',
+  'array-bracket-spacing': 'error'
 }
 
 module.exports = {
