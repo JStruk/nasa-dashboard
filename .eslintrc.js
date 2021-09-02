@@ -11,7 +11,8 @@ const rules = {
   'react/react-in-jsx-scope': 'off',
   '@typescript-eslint/no-use-before-define': 'error',
   'object-curly-spacing': 'error',
-  'array-bracket-spacing': 'error'
+  'array-bracket-spacing': 'error',
+  'quote-props': 'error'
 }
 
 module.exports = {
