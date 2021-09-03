@@ -3,11 +3,14 @@ import NeoPage from "../../../Pages/NeoPage";
 import MockAdapter from 'axios-mock-adapter'
 import axios from 'axios'
 import { NeoMocks } from "../../mocks/NeoMocks";
+import MockDate from 'mockdate'
 
 describe('NeoPage', () => {
+    const MOCK_DATE = Object.keys(NeoMocks.near_earth_objects)[0]
     const mock: MockAdapter = new MockAdapter(axios)
 
     beforeEach(() => {
+        MockDate.set(MOCK_DATE)
         mock.resetHistory();
     })
 

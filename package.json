@@ -61,10 +61,12 @@
   "devDependencies": {
     "@babel/preset-typescript": "^7.15.0",
     "@types/jest": "^27.0.1",
+    "@types/mockdate": "^3.0.0",
     "@types/react-router-dom": "^5.1.8",
     "autoprefixer": "^9.8.6",
     "eslint-config-prettier": "^8.3.0",
     "jest": "^27.1.0",
+    "mockdate": "^3.0.5",
     "postcss": "^7.0.36",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.7"
   },
