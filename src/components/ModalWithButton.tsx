@@ -9,11 +9,10 @@ interface ModalWithButtonProps {
 }
 
 const ModalWithButton: React.FC<ModalWithButtonProps> = ({ isOpen, children, setModalIsOpen }: ModalWithButtonProps) => {
-    const [hideAppElement, setHideAppElement] = useState(false)
-
+    let hideAppElement = false
     if (process.env.NODE_ENV !== 'test'){
         Modal.setAppElement('#root')
-        setHideAppElement(true)
+        hideAppElement = true
     }
 
     return (

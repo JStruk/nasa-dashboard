@@ -1,4 +1,4 @@
-import { BrowserRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AiOutlinePicture, AiOutlineMenu, AiFillCloseSquare } from 'react-icons/ai';
 import { GiAsteroid, GiTrackedRobot, GiInterceptorShip } from 'react-icons/gi'
 import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
@@ -32,37 +32,27 @@ const Sidebar = ({ collapsible = false, toggle = false }: SidebarProps): JSX.Ele
                     </button>
                     }
                 </div>
-                <BrowserRouter>
                     <Link to="/" className="m-5 text-center font-bold text-white overflow-hidden"> NASA
                         Dashboard
                     </Link>
-                </BrowserRouter>
                 <Menu iconShape="square">
                     <MenuItem icon={<AiOutlinePicture/>}>Astronomy Pic OTD
-                        <BrowserRouter>
                             <Link to="/apod"/>
-                        </BrowserRouter>
                     </MenuItem>
                 </Menu>
                 <Menu iconShape="square">
                     <MenuItem icon={<GiAsteroid/>}>Near Earth Objects
-                        <BrowserRouter>
                             <Link to="/neo"/>
-                        </BrowserRouter>
                     </MenuItem>
                 </Menu>
                 <Menu iconShape="square">
                     <MenuItem icon={<GiTrackedRobot/>}>Mars Rover
-                        <BrowserRouter>
                             <Link to="/rover"/>
-                        </BrowserRouter>
                     </MenuItem>
                 </Menu>
                 <Menu iconShape="square">
                     <MenuItem icon={<GiInterceptorShip/>}>ISS Tracker
-                        <BrowserRouter>
                             <Link to="/isstracker"/>
-                        </BrowserRouter>
                     </MenuItem>
                 </Menu>
             </ProSidebar>
