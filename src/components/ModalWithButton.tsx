@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from 'react-modal'
 import Button from "./Button";
 
@@ -9,10 +9,15 @@ interface ModalWithButtonProps {
 }
 
 const ModalWithButton: React.FC<ModalWithButtonProps> = ({ isOpen, children, setModalIsOpen }: ModalWithButtonProps) => {
-    Modal.setAppElement('#root')
+    const [hideAppElement, setHideAppElement] = useState(false)
+
+    if (process.env.NODE_ENV !== 'test'){
+        Modal.setAppElement('#root')
+        setHideAppElement(true)
+    }
 
     return (
-        <Modal style={{
+        <Modal ariaHideApp={hideAppElement} style={{
             overlay: {
                 position: 'fixed',
                 top: 0,
@@ -35,10 +40,11 @@ const ModalWithButton: React.FC<ModalWithButtonProps> = ({ isOpen, children, set
                 outline: 'none',
                 padding: '20px'
             }
-        }} isOpen={isOpen}>
+        }} isOpen={isOpen} data-testid="modal-window">
             <Button
                 text="Close"
                 id="close-modal-button"
+                testId="close-modal-button"
                 onClick={() => setModalIsOpen(false)}
                 color='red'
             />
