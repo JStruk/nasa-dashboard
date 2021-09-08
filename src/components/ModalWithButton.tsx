@@ -5,11 +5,13 @@ import Button from "./Button";
 interface ModalWithButtonProps {
     isOpen: boolean,
     setModalIsOpen: (isOpen: boolean) => void
-    children: any
+    children?: any
 }
 
 const ModalWithButton: React.FC<ModalWithButtonProps> = ({ isOpen, children, setModalIsOpen }: ModalWithButtonProps) => {
     let hideAppElement = false
+
+    /* istanbul ignore if */
     if (process.env.NODE_ENV !== 'test'){
         Modal.setAppElement('#root')
         hideAppElement = true
@@ -39,7 +41,7 @@ const ModalWithButton: React.FC<ModalWithButtonProps> = ({ isOpen, children, set
                 outline: 'none',
                 padding: '20px'
             }
-        }} isOpen={isOpen} data-testid="modal-window">
+        }} isOpen={isOpen} testId='modal-window' >
             <Button
                 text="Close"
                 id="close-modal-button"
