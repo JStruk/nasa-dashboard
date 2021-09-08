@@ -11,6 +11,7 @@ import APODPage from './Pages/APODPage'
 import NeoPage from './Pages/NeoPage'
 import RoverPage from './Pages/RoverPage'
 import ISSTrackerPage from './Pages/ISSTrackerPage'
+import { ResponsiveMedia } from "./ResponsiveMedia";
 
 function App(): JSX.Element {
     return (
@@ -22,7 +23,7 @@ function App(): JSX.Element {
                         medium: "(min-width: 600px) and (max-width: 1199px)",
                         large: "(min-width: 1200px)"
                     } }>
-                        { matches => (
+                        { /* istanbul ignore next */ matches => (
                             <>
                                 { matches.small && <Sidebar collapsible={ true } toggle={true}/> }
                                 { matches.medium && <Sidebar/> }
