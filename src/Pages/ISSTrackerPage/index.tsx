@@ -3,6 +3,7 @@ import ReactGlobe, { Marker, Coordinates } from 'react-globe'
 import { Sprite, SpriteMaterial, TextureLoader } from "three";
 import iss from '../../assets/iss.png'
 import { updateIssPosition } from "./updateIssPosition";
+import { customMarkerRenderer } from "./customMarkerRenderer";
 
 const ISSTrackerPage = (): JSX.Element => {
     const UPDATE_MARKER_INTERVAL = 120000
@@ -10,6 +11,7 @@ const ISSTrackerPage = (): JSX.Element => {
     const [initialCoords, setInitialCoords] = useState<Coordinates>()
     const [markers, setMarkers] = useState<Marker[]>([])
 
+    /* istanbul ignore next */
     const getNewMarker = async () => {
         const marker = await updateIssPosition()
         setMarkers((markers) => {
@@ -31,6 +33,7 @@ const ISSTrackerPage = (): JSX.Element => {
         (async () => getNewMarker())()
     }, [])
 
+    /* istanbul ignore next */
     const AddNewIssMarker = async () => {
         await getNewMarker()
         setTimeout(AddNewIssMarker, UPDATE_MARKER_INTERVAL)
@@ -50,17 +53,7 @@ const ISSTrackerPage = (): JSX.Element => {
                 focus={focus}
                 options={{
                     focusDistanceRadiusScale: 3,
-                    markerRenderer: marker => {
-                        const { value } = marker
-
-                        const map = new TextureLoader().load(iss);
-                        const material = new SpriteMaterial({ map: map });
-                        const sprite = new Sprite(material);
-
-                        sprite.scale.set(value, value, 1)
-
-                        return sprite
-                    },
+                    markerRenderer: customMarkerRenderer,
                     cameraAutoRotateSpeed: 0
                 }}
             />}

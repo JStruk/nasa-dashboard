@@ -1,17 +1,15 @@
 import { act, render, screen, waitFor } from "@testing-library/react";
-import ISSTrackerPage from "../../../Pages/ISSTrackerPage";
+import ISSTrackerPage from "Pages/ISSTrackerPage";
 import MockAdapter from 'axios-mock-adapter'
 import axios from 'axios'
+import React from "react";
+import { Props } from "react-globe";
 
-jest.mock('../../../Pages/ISSTrackerPage/updateIssPosition', () => {
-    return {
-        updateIssPosition: () => ({
-            id: 'markerId',
-            color: 'red',
-            coordinates: [1, 1],
-            value: 50,
-        })
-    }
+const mockReactGlobeComponent = jest.fn();
+// eslint-disable-next-line react/display-name
+jest.mock('react-globe', () => (props: Props) => {
+    mockReactGlobeComponent(props);
+    return <div/>;
 })
 
 describe('ISSTrackerPage', () => {
@@ -22,23 +20,37 @@ describe('ISSTrackerPage', () => {
     })
 
     // eslint-disable-next-line prefer-regex-literals
-    mock.onGet(new RegExp('api.open-notify.org')).reply(() => [200, { iss_position: { latitude: '1', longitude: '1' } }])
+    mock.onGet(new RegExp('iss-now')).reply(() => [200, {
+        message: "success",
+        timestamp: 1631130125,
+        iss_position: {
+            latitude: "1",
+            longitude: "2"
+        }
+    }])
 
-    it.skip('should render', async () => {
-        act(() => {
-            render(<ISSTrackerPage/>)
-        })
+    it('should render', async () => {
+        render(<ISSTrackerPage/>)
 
-        const mainISSPageElement = screen.getByTestId('main-iss-div')
+        const mainISSPageElement = await screen.findByTestId('main-iss-div')
 
         await waitFor(() => expect(mainISSPageElement).toBeInTheDocument())
     })
 
-    it.skip('should render each APOD in a card on the page', async () => {
-        // await render(<ISSTrackerPage/>)
-        //
-        // expect(mock.history.get).toHaveLength(1)
-        //
-        // await waitFor(() => expect(screen.getAllByTestId(/apod-\d/)).toHaveLength(2));
+    it('should pass props through to the ReactGlobe component', async () => {
+        render(<ISSTrackerPage/>)
+
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        await waitFor(() => {})
+        expect(mockReactGlobeComponent).toHaveBeenNthCalledWith(2, expect.objectContaining({
+            focus: [1,2],
+            initialCoordinates: [1, 2],
+            markers: expect.any(Array),
+            options: expect.objectContaining({
+                cameraAutoRotateSpeed: 0,
+                focusDistanceRadiusScale: 3,
+                markerRenderer: expect.any(Function)
+            })
+        }))
     })
 })
