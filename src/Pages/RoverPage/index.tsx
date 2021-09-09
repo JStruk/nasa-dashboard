@@ -13,7 +13,6 @@ const RoverPage = (): JSX.Element => {
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const [images, setImages] = useState([])
 
-
     const buttonClicked = async (id: string) => {
         // Set images to empty array so the modal opens instantly but does not show old photos from other camera button clicks
         setImages([])
