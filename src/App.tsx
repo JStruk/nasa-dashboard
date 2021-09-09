@@ -3,7 +3,6 @@ import {
     Switch,
     Route
 } from "react-router-dom";
-
 import './App.css';
 import Sidebar from './components/Sidebar'
 import Media from "react-media";
@@ -11,7 +10,6 @@ import APODPage from './Pages/APODPage'
 import NeoPage from './Pages/NeoPage'
 import RoverPage from './Pages/RoverPage'
 import ISSTrackerPage from './Pages/ISSTrackerPage'
-import { ResponsiveMedia } from "./ResponsiveMedia";
 
 function App(): JSX.Element {
     return (
