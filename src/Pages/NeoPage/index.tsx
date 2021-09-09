@@ -15,10 +15,10 @@ const NeoPage = (): JSX.Element => {
     }, [])
 
     return (
-        <div className="">
+        <div data-testid='main-neo-div'>
             {neos.map((neo: NEO, index: number) => {
                 return (
-                    <div className="m-6 rounded border border-gray-300 p-4" key={index}>
+                    <div className="m-6 rounded border border-gray-300 p-4" key={index} data-testid={`neo-div-${index}`}>
                         <p>Name: {neo.name}</p>
                         <p>Hazardous: <span className={neo.is_potentially_hazardous_asteroid ? "text-red-700" : ""}> {neo.is_potentially_hazardous_asteroid ?  'YEEEE' : 'nop'}  </span></p>
                         <p>Distance: {parseFloat(neo.close_approach_data[0]?.miss_distance?.kilometers).toLocaleString()} km</p>

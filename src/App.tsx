@@ -3,7 +3,6 @@ import {
     Switch,
     Route
 } from "react-router-dom";
-
 import './App.css';
 import Sidebar from './components/Sidebar'
 import Media from "react-media";
@@ -12,17 +11,17 @@ import NeoPage from './Pages/NeoPage'
 import RoverPage from './Pages/RoverPage'
 import ISSTrackerPage from './Pages/ISSTrackerPage'
 
-function App() {
+function App(): JSX.Element {
     return (
         <Router>
-            <div className="flex w-full min-h-screen">
-                <div className="">
+            <div className="flex w-full min-h-screen" data-testid='main-div'>
+                <div>
                     <Media queries={ {
                         small: "(max-width: 599px)",
                         medium: "(min-width: 600px) and (max-width: 1199px)",
                         large: "(min-width: 1200px)"
                     } }>
-                        { matches => (
+                        { /* istanbul ignore next */ matches => (
                             <>
                                 { matches.small && <Sidebar collapsible={ true } toggle={true}/> }
                                 { matches.medium && <Sidebar/> }

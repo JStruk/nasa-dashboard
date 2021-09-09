@@ -15,10 +15,11 @@ const Sidebar = ({ collapsible = false, toggle = false }: SidebarProps): JSX.Ele
 
     return (
         <>
-            <ProSidebar title="NASA" collapsed={collapsed}>
+            <ProSidebar title="NASA" collapsed={collapsed} data-testid="sidebar" >
                 <div className="flex w-full justify-center">
                     {toggle &&
                     <button
+                        data-testid="collapseButton"
                         className="mt-2"
                         onClick={() => {
                             setCollapsed(!collapsed)
@@ -31,18 +32,28 @@ const Sidebar = ({ collapsible = false, toggle = false }: SidebarProps): JSX.Ele
                     </button>
                     }
                 </div>
-                <Link to="/" className="m-5 text-center font-bold text-white overflow-hidden"> NASA Dashboard </Link>
+                    <Link to="/" className="m-5 text-center font-bold text-white overflow-hidden"> NASA
+                        Dashboard
+                    </Link>
                 <Menu iconShape="square">
-                    <MenuItem icon={<AiOutlinePicture/>}>Astronomy Pic OTD <Link to="/apod"/> </MenuItem>
+                    <MenuItem icon={<AiOutlinePicture/>}>Astronomy Pic OTD
+                            <Link to="/apod"/>
+                    </MenuItem>
                 </Menu>
                 <Menu iconShape="square">
-                    <MenuItem icon={<GiAsteroid/>}>Near Earth Objects <Link to="/neo"/> </MenuItem>
+                    <MenuItem icon={<GiAsteroid/>}>Near Earth Objects
+                            <Link to="/neo"/>
+                    </MenuItem>
                 </Menu>
                 <Menu iconShape="square">
-                    <MenuItem icon={<GiTrackedRobot/>}>Mars Rover <Link to="/rover"/> </MenuItem>
+                    <MenuItem icon={<GiTrackedRobot/>}>Mars Rover
+                            <Link to="/rover"/>
+                    </MenuItem>
                 </Menu>
                 <Menu iconShape="square">
-                    <MenuItem icon={<GiInterceptorShip/>}>ISS Tracker <Link to="/isstracker"/> </MenuItem>
+                    <MenuItem icon={<GiInterceptorShip/>}>ISS Tracker
+                            <Link to="/isstracker"/>
+                    </MenuItem>
                 </Menu>
             </ProSidebar>
         </>

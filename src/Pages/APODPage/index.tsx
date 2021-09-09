@@ -15,10 +15,10 @@ const APODPage = (): JSX.Element => {
     }, [])
 
     return (
-        <div className="">
+        <div data-testid='apod-page-div'>
             {apods.map((apod: APOD, index: number) => {
                 return (
-                    <div className="m-6 rounded border border-gray-300" key={index}>
+                    <div className="m-6 rounded border border-gray-300" key={index} data-testid={`apod-${index}`}>
                         <Card apod={apod}/>
                     </div>
                 )

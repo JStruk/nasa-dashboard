@@ -1,42 +1,39 @@
+import React, { useEffect, useState } from 'react';
 import ReactGlobe, { Marker, Coordinates } from 'react-globe'
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { v4 } from 'uuid'
+import { updateIssPosition } from "./updateIssPosition";
+import { customMarkerRenderer } from "./customMarkerRenderer";
 
 const ISSTrackerPage = (): JSX.Element => {
-    const UPDATE_MARKER_INTERVAL = 30000
-
-    const [initialCoords, setinitialCoords] = useState<Coordinates | undefined>()
+    const UPDATE_MARKER_INTERVAL = 120000
+    const [focus, setFocus] = useState<Coordinates>()
+    const [initialCoords, setInitialCoords] = useState<Coordinates>()
     const [markers, setMarkers] = useState<Marker[]>([])
 
-    const updateIssPosition = async () => {
-        const result = await axios.get('http://api.open-notify.org/iss-now.json')
-
-        const newMarker: Marker = {
-            id: 'international-space-satan-' + v4(),
-            color: 'red',
-            coordinates: [result.data.iss_position.latitude, result.data.iss_position.longitude],
-            value: 50,
-        }
-
+    /* istanbul ignore next */
+    const getNewMarker = async () => {
+        const marker = await updateIssPosition()
         setMarkers((markers) => {
-            if(markers.length >= 49) {
+            if (markers.length >= 49) {
                 markers.shift()
             }
-            return [...markers, newMarker]
+            if (markers.length > 1) markers[markers.length - 1].value = 25
+            return [...markers, marker]
         })
 
         if (!initialCoords) {
-            setinitialCoords([result.data.iss_position.latitude, result.data.iss_position.longitude])
+            setInitialCoords(marker.coordinates)
         }
+
+        setFocus(marker.coordinates)
     }
 
     useEffect(() => {
-        (async () => updateIssPosition())()
+        (async () => getNewMarker())()
     }, [])
 
+    /* istanbul ignore next */
     const AddNewIssMarker = async () => {
-        await updateIssPosition()
+        await getNewMarker()
         setTimeout(AddNewIssMarker, UPDATE_MARKER_INTERVAL)
     }
 
@@ -47,11 +44,16 @@ const ISSTrackerPage = (): JSX.Element => {
     }, [initialCoords])
 
     return (
-        <div className="w-full h-screen">
+        <div className="w-full h-screen" data-testid="main-iss-div">
             {initialCoords && <ReactGlobe
                 markers={markers}
                 initialCoordinates={initialCoords}
-                options={{ cameraAutoRotateSpeed: 0 }}
+                focus={focus}
+                options={{
+                    focusDistanceRadiusScale: 3,
+                    markerRenderer: customMarkerRenderer,
+                    cameraAutoRotateSpeed: 0
+                }}
             />}
         </div>
     )

@@ -25,7 +25,7 @@ const RoverPage = (): JSX.Element => {
 
     return (
         <>
-            <div className="grid grid-flow-col w-full grid-rows-3 gap-4 h-screen items-center p-4">
+            <div className="grid grid-flow-col w-full grid-rows-3 gap-4 h-screen items-center p-4" data-testid="main-rover-div">
                 <div>
                 </div>
                 <div className="m-auto">
@@ -33,7 +33,7 @@ const RoverPage = (): JSX.Element => {
                 </div>
                 <div>3</div>
                 <div className="m-auto">
-                    <Button text={CAMERAS.MAST.label} onClick={buttonClicked} id={CAMERAS.MAST.buttonId}/>
+                    <Button text={CAMERAS.MAST.label} onClick={buttonClicked} id={CAMERAS.MAST.buttonId} testId="mast-cam-button"/>
                     <Button text={CAMERAS.NAVCAM.label} onClick={buttonClicked} id={CAMERAS.NAVCAM.buttonId}/></div>
                 <div className="m-auto"><img src={rover} alt="Cartoon Mars Rover" className="rover" id="rover"/></div>
                 <div>6</div>
@@ -50,13 +50,14 @@ const RoverPage = (): JSX.Element => {
 
             <ModalWithButton isOpen={modalIsOpen} setModalIsOpen={setModalIsOpen}>
                 <section className="py-8">
-                    <div className="flex flex-wrap -mx-4 -mb-8">
+                    <div className="flex flex-wrap -mx-4 -mb-8" data-testid="rover-images-div-in-modal">
                         {images &&
                         images.map((image: RoverImage, key: number) => (
                             <RoverImageCard
                                 key={key}
                                 src={image.img_src}
                                 roverImage={image}
+                                testId={`modal-img-${key}`}
                             />
                         ))
                         }
