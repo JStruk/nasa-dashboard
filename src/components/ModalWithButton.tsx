@@ -8,7 +8,7 @@ interface ModalWithButtonProps {
     children: any
 }
 
-const ModalWithButton: React.FC<ModalWithButtonProps> = ({isOpen, children, setModalIsOpen}: ModalWithButtonProps) => {
+const ModalWithButton: React.FC<ModalWithButtonProps> = ({ isOpen, children, setModalIsOpen }: ModalWithButtonProps) => {
     Modal.setAppElement('#root')
 
     return (
