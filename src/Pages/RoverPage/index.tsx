@@ -13,13 +13,6 @@ const RoverPage = (): JSX.Element => {
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const [images, setImages] = useState([])
 
-    const mastButtonClicked = async () => {
-        setModalIsOpen(true)
-        const { data } = await axios.get('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=MAST&api_key=BkQerCYLcMl5BzaHg6vsasTgunnXJnO4tPTgehic&page=1')
-        setImages(data.photos)
-        console.log(data);
-    }
-
     const buttonClicked = async (id: string) => {
         // Set images to empty array so the modal opens instantly but does not show old photos from other camera button clicks
         setImages([])
