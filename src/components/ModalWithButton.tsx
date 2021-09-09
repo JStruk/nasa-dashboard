@@ -5,10 +5,10 @@ import Button from "./Button";
 interface ModalWithButtonProps {
     isOpen: boolean,
     setModalIsOpen: (isOpen: boolean) => void
-    children: any
+    children: unknown
 }
 
-const ModalWithButton: React.FC<ModalWithButtonProps> = ({isOpen, children, setModalIsOpen}: ModalWithButtonProps) => {
+const ModalWithButton: React.FC<ModalWithButtonProps> = ({ isOpen, children, setModalIsOpen }: ModalWithButtonProps) => {
     Modal.setAppElement('#root')
 
     return (
