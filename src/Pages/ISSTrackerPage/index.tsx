@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import ReactGlobe, { Marker, Coordinates } from 'react-globe'
-import { Sprite, SpriteMaterial, TextureLoader } from "three";
-import iss from '../../assets/iss.png'
 import { updateIssPosition } from "./updateIssPosition";
 import { customMarkerRenderer } from "./customMarkerRenderer";
 
