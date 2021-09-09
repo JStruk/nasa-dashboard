@@ -1,4 +1,6 @@
+/* istanbul ignore file */
 /* eslint-disable camelcase */
+
 export type NEO = {
     links: {
         self: string
