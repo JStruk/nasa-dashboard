@@ -20,14 +20,12 @@ describe('ISSTrackerPage', () => {
     })
 
     // eslint-disable-next-line prefer-regex-literals
-    mock.onGet(new RegExp('iss-now')).reply(() => [200, {
-        message: "success",
-        timestamp: 1631130125,
-        iss_position: {
+    mock.onGet(new RegExp('api.wheretheiss.at')).reply(() => [200,
+        {
             latitude: "1",
             longitude: "2"
         }
-    }])
+    ])
 
     it('should render', async () => {
         render(<ISSTrackerPage/>)
@@ -41,9 +39,10 @@ describe('ISSTrackerPage', () => {
         render(<ISSTrackerPage/>)
 
         // eslint-disable-next-line @typescript-eslint/no-empty-function
-        await waitFor(() => {})
+        await waitFor(() => {
+        })
         expect(mockReactGlobeComponent).toHaveBeenNthCalledWith(2, expect.objectContaining({
-            focus: [1,2],
+            focus: [1, 2],
             initialCoordinates: [1, 2],
             markers: expect.any(Array),
             options: expect.objectContaining({
