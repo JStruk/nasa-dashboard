@@ -24,7 +24,9 @@ const APODPage = (): JSX.Element => {
             }
 
             if (startDate && endDate) {
-                return `${baseUrl}&start_date=${nasaDate(startDate)}&end_date=${nasaDate(endDate)}`
+                if (nasaDate(startDate) !== nasaDate(endDate)) {
+                    return `${baseUrl}&start_date=${nasaDate(startDate)}&end_date=${nasaDate(endDate)}`
+                }
             }
 
             return `${baseUrl}&date=${nasaDate(startDate || endDate)}`
@@ -95,7 +97,7 @@ const APODPage = (): JSX.Element => {
             </div>
             }
 
-            {!isLoading && apods.map((apod: APOD, index: number) => {
+            {!isLoading && (Array.isArray(apods) ? apods : [apods]).map((apod: APOD, index: number) => {
                 return (
                     <div className="m-6 rounded border border-gray-300" key={index} data-testid={`apod-${index}`}>
                         <Card apod={apod}/>
